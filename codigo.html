@@ -1,24 +1,36 @@
+Guau couture v3 · HTML
+Copiar
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guau Couture — Alta Costura Canina</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<title>Guau Couture — Alta Costura Canina · Sevilla 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
+/* ── BRAND GUIDE COLORS ───────────────
+   #8FBC8F  Verde Menta (principal)
+   #E8B4B8  Rosa Jardín (acento)
+   #FAFAF8  Blanco (fondo)
+   #1A1A1A  Negro Tinta
+   #EEF6EE  Menta Pálido
+──────────────────────────────────────*/
 :root {
   --verde:       #8FBC8F;
-  --verde-oscuro:#6a9e6a;
+  --verde-dark:  #5a8f5a;
+  --verde-texto: #3d6b3d;
   --rosa:        #E8B4B8;
+  --rosa-dark:   #c98a8f;
   --fondo:       #FAFAF8;
-  --negro:       #000000;
-  --gris-medio:  #6b6b6b;
-  --gris-claro:  #e2e2de;
-  --gris-suave:  #f3f3f0;
+  --negro:       #1A1A1A;
+  --gris:        #6b6b6b;
+  --gris-claro:  #e0e0dc;
+  --menta-palido:#EEF6EE;
 }
-
+ 
 html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
@@ -27,770 +39,847 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-
-/* ─── UTILIDAD ─────────────────────── */
-.u-eyebrow {
-  font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase;
-  color: var(--verde-oscuro); display: flex; align-items: center; gap: 1.2rem;
-}
-.u-eyebrow::before {
-  content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--verde);
-}
-.u-rule { width: 100%; height: 1px; background: var(--negro); }
-
-/* ─── NAVEGACIÓN ────────────────────── */
+ 
+/* ── NAV ──────────────────────────────── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.4rem 5rem;
-  background: rgba(250,250,248,0.96);
-  backdrop-filter: blur(16px);
+  padding: 1.2rem 4rem;
+  background: rgba(250,250,248,0.97);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--negro);
 }
 .nav-logo {
-  font-family: 'Playfair Display', serif; font-size: 1rem;
-  letter-spacing: 0.22em; text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
   color: var(--negro); text-decoration: none;
+  display: flex; align-items: baseline; gap: 0.3rem;
 }
-.nav-logo span { color: var(--verde-oscuro); }
-.nav-links { display: flex; gap: 3rem; list-style: none; }
+.nav-logo .couture {
+  font-style: italic; font-weight: 400; color: var(--verde-texto);
+}
+.nav-sub {
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gris); display: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .nav-links a {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gris-medio); text-decoration: none; transition: color 0.25s;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gris); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--negro); }
 .nav-cta {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--negro); text-decoration: none;
-  border: 1px solid var(--negro);
-  padding: 0.55rem 1.4rem;
-  transition: background 0.25s, color 0.25s;
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--fondo); background: var(--negro); text-decoration: none;
+  border: 1px solid var(--negro); padding: 0.6rem 1.6rem;
+  transition: background 0.2s, color 0.2s;
 }
-.nav-cta:hover { background: var(--negro); color: var(--fondo); }
-
-/* ─── HERO ──────────────────────────── */
+.nav-cta:hover { background: var(--verde-texto); border-color: var(--verde-texto); }
+ 
+/* ── HERO ─────────────────────────────── */
 .hero {
   min-height: 100vh;
   display: grid; grid-template-columns: 1fr 1fr;
-  margin-top: 0; /* sits behind nav */
+  border-bottom: 1px solid var(--negro);
 }
-/* Left */
 .hero-left {
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 10rem 5rem 7rem 5rem;
+  padding: 9rem 4.5rem 6rem;
   border-right: 1px solid var(--negro);
-  position: relative;
+  position: relative; background: var(--fondo);
 }
-.hero-left .u-eyebrow { margin-bottom: 3rem; }
+.hero-season {
+  font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--verde-texto); margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.hero-season::before {
+  content: ''; width: 2rem; height: 1px; background: var(--verde);
+}
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 4.8vw, 5.6rem);
-  font-weight: 500; line-height: 1.02; letter-spacing: -0.01em;
-  margin-bottom: 4rem;
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
+  font-weight: 700; line-height: 0.95; letter-spacing: -0.02em;
+  margin-bottom: 0.5rem; color: var(--negro);
 }
-.hero-title em { font-style: italic; color: var(--verde-oscuro); }
+.hero-title-italic {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
+  font-weight: 400; font-style: italic; line-height: 0.95; letter-spacing: -0.01em;
+  margin-bottom: 3rem; color: var(--negro);
+}
 .hero-tagline {
+  border-left: 2px solid var(--rosa);
+  padding: 0.6rem 0 0.6rem 1.4rem;
+  margin-bottom: 1.8rem;
+  max-width: 44ch;
+}
+.hero-tagline p {
   font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 1.05rem; line-height: 1.75; color: var(--gris-medio);
-  border-left: 1px solid var(--rosa);
-  padding: 0.6rem 0 0.6rem 1.6rem;
-  margin-bottom: 4rem; max-width: 44ch;
+  font-size: 1rem; line-height: 1.7; color: var(--gris);
+}
+.hero-desc {
+  font-size: 0.9rem; line-height: 1.8; color: var(--gris);
+  max-width: 46ch; margin-bottom: 3.5rem;
 }
 .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
-.btn-noir {
+.btn-fill {
   background: var(--negro); color: var(--fondo);
-  padding: 1rem 2.8rem;
-  font-family: 'DM Sans', sans-serif; font-size: 0.72rem;
-  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.95rem 2.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
   border: 1px solid var(--negro); cursor: pointer; text-decoration: none;
-  display: inline-block; transition: background 0.25s, color 0.25s;
+  display: inline-block; transition: background 0.2s, color 0.2s;
 }
-.btn-noir:hover { background: var(--fondo); color: var(--negro); }
-.btn-ghost {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gris-medio); text-decoration: none;
+.btn-fill:hover { background: var(--verde-texto); border-color: var(--verde-texto); }
+.btn-line {
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gris); text-decoration: none;
   border-bottom: 1px solid var(--gris-claro); padding-bottom: 2px;
-  transition: color 0.25s, border-color 0.25s;
+  transition: color 0.2s, border-color 0.2s;
 }
-.btn-ghost:hover { color: var(--negro); border-color: var(--negro); }
-
-/* stamp */
+.btn-line:hover { color: var(--negro); border-color: var(--negro); }
+/* Stamp */
 .hero-stamp {
-  position: absolute; top: 7rem; right: 3.5rem;
-  width: 100px; height: 100px;
+  position: absolute; top: 6.5rem; right: 3rem;
+  width: 88px; height: 88px;
   border: 1px solid var(--negro); border-radius: 50%;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center;
-  padding: 1rem;
 }
-.hero-stamp-year {
-  font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; line-height: 1;
+.hero-stamp span:first-child {
+  font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1;
 }
-.hero-stamp-text {
-  font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gris-medio); margin-top: 0.3rem; line-height: 1.4;
+.hero-stamp span:last-child {
+  font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gris); margin-top: 0.25rem; line-height: 1.4;
 }
-
-/* Right */
-.hero-right { position: relative; overflow: hidden; background: var(--gris-suave); }
-.hero-img-wrap {
-  width: 100%; height: 100%;
-  position: relative;
+ 
+/* Hero right: imagen hero con perros nazarenos */
+.hero-right {
+  position: relative; overflow: hidden;
+  background: var(--negro);
 }
-.hero-img-wrap img {
+.hero-right img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(18%) contrast(1.04);
+  opacity: 0.88;
+  filter: contrast(1.08) saturate(0.85);
 }
-/* caption strip */
-.hero-caption {
+.hero-img-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
-  background: rgba(250,250,248,0.95);
-  border-top: 1px solid var(--negro);
-  padding: 1.4rem 2.4rem;
+  background: rgba(26,26,26,0.75);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(250,250,248,0.15);
+  padding: 1.2rem 2rem;
   display: flex; justify-content: space-between; align-items: center;
 }
-.hero-caption-main {
-  font-family: 'Playfair Display', serif; font-size: 1.05rem;
+.hero-img-caption span:first-child {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 0.95rem; color: var(--fondo);
 }
-.hero-caption-sub {
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gris-medio);
+.hero-img-caption span:last-child {
+  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(250,250,248,0.5);
 }
-
-/* ─── TICKER ────────────────────────── */
-.ticker-wrap {
-  border-top: 1px solid var(--negro);
+ 
+/* ── TICKER ───────────────────────────── */
+.ticker {
   border-bottom: 1px solid var(--negro);
-  overflow: hidden; padding: 0.85rem 0; background: var(--fondo);
+  overflow: hidden; padding: 0.8rem 0; background: var(--negro);
   white-space: nowrap;
 }
-.ticker-inner {
-  display: inline-block;
-  animation: ticker 30s linear infinite;
+.ticker-track { display: inline-block; animation: tick 28s linear infinite; }
+.ticker-track span {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(250,250,248,0.4); margin: 0 2.5rem;
 }
-.ticker-inner span {
-  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gris-medio); margin: 0 3rem;
-}
-.ticker-inner span.accent { color: var(--verde-oscuro); }
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ─── DESCRIPCIÓN ───────────────────── */
+.ticker-track span.hi { color: var(--verde); }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
+/* ── DESCRIPCIÓN ──────────────────────── */
 .descripcion {
   display: grid; grid-template-columns: 1fr 2fr;
   border-bottom: 1px solid var(--negro);
 }
-.desc-aside {
-  padding: 7rem 4rem 7rem 5rem;
+.desc-sidebar {
+  padding: 6rem 3.5rem 6rem 4.5rem;
   border-right: 1px solid var(--negro);
-  display: flex; flex-direction: column; gap: 3rem;
+  background: var(--menta-palido);
+  display: flex; flex-direction: column; gap: 2.5rem;
 }
-.desc-aside-label {
-  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--verde-oscuro);
+.desc-sidebar-label {
+  font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--verde-texto);
 }
-.desc-aside-num {
+.desc-sidebar-num {
   font-family: 'Playfair Display', serif;
-  font-size: 6rem; font-weight: 400; line-height: 1;
-  color: var(--gris-claro); letter-spacing: -0.04em;
+  font-size: 7rem; font-weight: 700; line-height: 1;
+  color: rgba(143,188,143,0.25); letter-spacing: -0.05em;
 }
-.desc-aside img {
-  width: 100%; aspect-ratio: 3/4; object-fit: cover;
-  border: 1px solid var(--negro);
-  filter: grayscale(20%);
+.desc-sidebar img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
+  border: 1px solid rgba(26,26,26,0.15);
 }
 .desc-main {
-  padding: 7rem 5rem;
+  padding: 6rem 4.5rem; background: var(--fondo);
 }
 .desc-main h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3.2vw, 3.4rem); font-weight: 500; line-height: 1.1;
-  margin-bottom: 3.5rem;
+  font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 700; line-height: 1.1;
+  margin-bottom: 3rem; color: var(--negro);
 }
-.desc-main h2 em { font-style: italic; color: var(--verde-oscuro); }
+.desc-main h2 em { font-style: italic; font-weight: 400; color: var(--verde-texto); }
 .desc-main p {
-  font-size: 1rem; line-height: 1.9; color: var(--gris-medio);
-  max-width: 64ch; margin-bottom: 1.8rem;
+  font-size: 0.97rem; line-height: 1.9; color: var(--gris);
+  max-width: 62ch; margin-bottom: 1.6rem;
 }
 .desc-main p strong { color: var(--negro); font-weight: 500; }
 .desc-quote {
-  border-left: 1px solid var(--rosa);
-  padding: 1rem 2rem;
-  margin: 3rem 0;
-  background: linear-gradient(90deg, rgba(232,180,184,0.06) 0%, transparent 80%);
+  border-left: 2px solid var(--rosa);
+  padding: 1rem 1.8rem; margin: 2.5rem 0;
+  background: rgba(232,180,184,0.07);
 }
 .desc-quote p {
   font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 1.2rem; line-height: 1.65; color: var(--negro); margin: 0;
+  font-size: 1.15rem; line-height: 1.65; color: var(--negro); margin: 0;
 }
-.desc-img-bottom {
-  width: 100%; max-width: 540px; aspect-ratio: 16/9;
-  object-fit: cover; border: 1px solid var(--negro);
-  margin-top: 3rem; filter: grayscale(15%);
+.desc-quote cite {
+  display: block; margin-top: 0.7rem;
+  font-family: 'DM Sans', sans-serif; font-style: normal;
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rosa-dark);
 }
-
-/* ─── PROGRAMA ──────────────────────── */
-.programa {
-  background: var(--negro); color: var(--fondo);
-  border-bottom: 1px solid var(--negro);
+/* Imagen horizontal en la sección desc */
+.desc-img-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem;
 }
-.programa-header {
+.desc-img-row img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top;
+  border: 1px solid var(--gris-claro);
+  filter: grayscale(12%);
+}
+.desc-img-caption {
+  font-size: 0.68rem; letter-spacing: 0.1em; color: var(--gris);
+  margin-top: 0.5rem; font-style: italic;
+}
+ 
+/* ── PROGRAMA ─────────────────────────── */
+.programa { background: var(--negro); border-bottom: 1px solid var(--negro); }
+.programa-head {
   display: grid; grid-template-columns: 2fr 1fr;
-  border-bottom: 1px solid rgba(250,250,248,0.12);
-  padding: 6rem 5rem 5rem;
-  gap: 4rem; align-items: end;
+  border-bottom: 1px solid rgba(250,250,248,0.1);
+  padding: 5.5rem 4.5rem 4.5rem; gap: 3rem; align-items: end;
 }
-.programa-header h2 {
+.programa-head h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 4.5vw, 4.8rem); font-weight: 500; line-height: 1.05;
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem); font-weight: 700; line-height: 1.05;
+  color: var(--fondo);
 }
-.programa-header h2 em { font-style: italic; color: var(--verde); }
-.programa-header-meta {
-  font-size: 0.75rem; letter-spacing: 0.12em; line-height: 2;
-  color: rgba(250,250,248,0.45); text-transform: uppercase;
-  text-align: right;
+.programa-head h2 em { font-style: italic; font-weight: 400; color: var(--verde); }
+.programa-head-meta {
+  font-size: 0.7rem; letter-spacing: 0.13em; line-height: 2;
+  color: rgba(250,250,248,0.4); text-transform: uppercase; text-align: right;
 }
+ 
+/* Grid 2x2 como los ejemplos */
 .pases-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: 1fr 1fr;
 }
 .pase {
-  padding: 4rem 3rem;
-  border-right: 1px solid rgba(250,250,248,0.1);
+  padding: 0;
+  border-right: 1px solid rgba(250,250,248,0.08);
+  border-bottom: 1px solid rgba(250,250,248,0.08);
   position: relative; overflow: hidden; cursor: default;
-  transition: background 0.45s cubic-bezier(0.16,1,0.3,1);
 }
-.pase:last-child { border-right: none; }
-.pase-overlay {
-  position: absolute; inset: 0;
+.pase:nth-child(2n) { border-right: none; }
+.pase:nth-child(n+3) { border-bottom: none; }
+ 
+.pase-img-wrap {
+  width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;
+}
+.pase-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  filter: grayscale(20%) brightness(0.82);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+.pase:hover .pase-img-wrap img {
+  filter: grayscale(0%) brightness(0.95);
+  transform: scale(1.03);
+}
+ 
+/* Badge sobre imagen */
+.pase-badge {
+  position: absolute; top: 1rem; left: 1.2rem;
   background: var(--verde);
-  transform: translateY(100%);
-  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
-  z-index: 0;
+  padding: 0.25rem 0.8rem;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--negro); font-weight: 500;
 }
-.pase:hover .pase-overlay { transform: translateY(0); }
-.pase > *:not(.pase-overlay) { position: relative; z-index: 1; }
-
-.pase-num {
-  font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 400;
-  color: rgba(250,250,248,0.08); line-height: 1; margin-bottom: 2rem;
-  transition: color 0.45s;
+ 
+.pase-body { padding: 2rem 2.5rem 2.5rem; }
+.pase-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.8rem;
 }
-.pase:hover .pase-num { color: rgba(0,0,0,0.1); }
 .pase-roman {
-  font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--verde); margin-bottom: 1rem; transition: color 0.45s;
+  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--verde);
 }
-.pase:hover .pase-roman { color: rgba(0,0,0,0.4); }
+.pase-time {
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(250,250,248,0.35);
+}
 .pase-title {
-  font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 500;
-  color: var(--fondo); margin-bottom: 0.5rem; line-height: 1.2; transition: color 0.45s;
+  font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+  color: var(--fondo); margin-bottom: 0.3rem; line-height: 1.1;
 }
-.pase:hover .pase-title { color: var(--negro); }
 .pase-raza {
-  font-size: 0.78rem; letter-spacing: 0.1em; font-style: italic;
-  color: rgba(250,250,248,0.4); margin-bottom: 2rem; transition: color 0.45s;
+  font-size: 0.78rem; font-style: italic; letter-spacing: 0.06em;
+  color: rgba(250,250,248,0.4); margin-bottom: 1.2rem;
 }
-.pase:hover .pase-raza { color: rgba(0,0,0,0.5); }
 .pase-desc {
-  font-size: 0.84rem; line-height: 1.75;
-  color: rgba(250,250,248,0.5); transition: color 0.45s;
+  font-size: 0.85rem; line-height: 1.75;
+  color: rgba(250,250,248,0.55);
+  border-top: 1px solid rgba(250,250,248,0.08);
+  padding-top: 1.2rem;
 }
-.pase:hover .pase-desc { color: rgba(0,0,0,0.65); }
-.pase-img {
-  width: 100%; aspect-ratio: 4/3; object-fit: cover;
-  margin-top: 2.5rem;
-  border: 1px solid rgba(250,250,248,0.1);
-  filter: grayscale(30%) brightness(0.85);
-  transition: filter 0.45s;
+ 
+/* ── CTA INTERMEDIO ────────────────────── */
+.cta-band {
+  background: var(--menta-palido);
+  border-bottom: 1px solid var(--negro);
+  padding: 5rem 4.5rem;
+  display: grid; grid-template-columns: 2fr 1fr;
+  gap: 4rem; align-items: center;
 }
-.pase:hover .pase-img {
-  filter: grayscale(0%) brightness(1);
-  border-color: rgba(0,0,0,0.15);
+.cta-band h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; line-height: 1.1;
 }
-
-/* ─── INFO ──────────────────────────── */
+.cta-band h2 em { font-style: italic; font-weight: 400; color: var(--verde-texto); }
+.cta-band p {
+  font-size: 0.9rem; line-height: 1.8; color: var(--gris); margin-top: 1.2rem;
+  max-width: 56ch;
+}
+.cta-band-right { text-align: right; }
+.cta-band-aside {
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gris); line-height: 2; margin-top: 1rem; font-style: italic;
+}
+ 
+/* ── INFO PRÁCTICA ─────────────────────── */
 .info {
   display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--negro);
 }
 .info-left {
-  padding: 7rem 5rem;
-  border-right: 1px solid var(--negro);
-  display: flex; flex-direction: column; gap: 3.5rem;
+  padding: 6rem 4.5rem; border-right: 1px solid var(--negro);
+  background: var(--fondo);
+  display: flex; flex-direction: column; gap: 3rem;
 }
+.info-label {
+  font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--verde-texto); display: flex; align-items: center; gap: 1rem;
+}
+.info-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--verde); }
 .info-left h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3vw, 3rem); font-weight: 500; line-height: 1.1;
+  font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.1;
 }
-.info-left h2 em { font-style: italic; color: var(--verde-oscuro); }
-.info-left p {
-  font-size: 0.95rem; line-height: 1.85; color: var(--gris-medio); max-width: 48ch;
+.info-left h2 em { font-style: italic; font-weight: 400; color: var(--verde-texto); }
+.info-left p { font-size: 0.9rem; line-height: 1.85; color: var(--gris); max-width: 46ch; }
+/* 4-column info grid como en ejemplo */
+.info-cols {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+  border: 1px solid var(--negro);
 }
-.info-img {
-  width: 100%; aspect-ratio: 16/9;
-  object-fit: cover; border: 1px solid var(--negro);
-  filter: grayscale(15%);
+.info-col {
+  padding: 1.8rem 2rem; border-right: 1px solid var(--negro);
+  border-bottom: 1px solid var(--negro);
 }
+.info-col:nth-child(2n) { border-right: none; }
+.info-col:nth-child(n+3) { border-bottom: none; }
+.info-col-label {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--verde-texto); margin-bottom: 0.6rem;
+}
+.info-col-val {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.3; font-weight: 700;
+}
+.info-col-sub { font-size: 0.78rem; color: var(--gris); margin-top: 0.3rem; font-style: italic; }
+ 
 .info-right {
-  display: flex; flex-direction: column;
+  background: var(--negro); display: flex; flex-direction: column;
 }
-.info-row {
-  display: grid; grid-template-columns: 0.55fr 1fr;
-  border-bottom: 1px solid var(--negro);
-  flex: 1;
+.info-right-img {
+  flex: 1; overflow: hidden; position: relative;
 }
-.info-row:last-child { border-bottom: none; }
-.info-row-label {
-  padding: 2.2rem 2.5rem;
-  border-right: 1px solid var(--negro);
-  background: var(--gris-suave);
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--verde-oscuro); display: flex; align-items: center;
-}
-.info-row-val {
-  padding: 2.2rem 2.5rem;
-  font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.4;
-}
-.info-row-val small {
-  display: block;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.78rem; color: var(--gris-medio);
-  margin-top: 0.3rem; font-style: normal;
-}
-
-/* ─── MAP ───────────────────────────── */
-.map-band {
-  height: 280px; position: relative; overflow: hidden;
-  border-bottom: 1px solid var(--negro);
-}
-.map-band img {
+.info-right-img img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(40%) contrast(1.1);
+  filter: grayscale(25%) brightness(0.75);
 }
-.map-overlay {
-  position: absolute; inset: 0;
-  background: rgba(250,250,248,0.1);
-  display: flex; align-items: center; justify-content: center;
+.info-right-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, transparent 100%);
+  padding: 2.5rem 3rem;
 }
-.map-tag {
-  background: var(--fondo); border: 1px solid var(--negro);
-  padding: 1.6rem 2.8rem; text-align: center;
+.info-right-overlay h3 {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.4rem; color: var(--fondo); line-height: 1.3; margin-bottom: 0.5rem;
 }
-.map-tag-place {
-  font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500;
+.info-right-overlay p {
+  font-size: 0.75rem; color: rgba(250,250,248,0.5); letter-spacing: 0.1em; text-transform: uppercase;
 }
-.map-tag-sub {
-  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gris-medio); margin-top: 0.3rem;
+.info-right-bottom {
+  padding: 2rem 3rem; border-top: 1px solid rgba(250,250,248,0.1);
 }
-
-/* ─── FOOTER / REGISTRO ─────────────── */
-footer {
-  border-bottom: none;
+.info-right-bottom p {
+  font-size: 0.78rem; color: rgba(250,250,248,0.5); line-height: 1.7; font-style: italic;
 }
-.footer-top {
+ 
+/* ── REGISTRO ─────────────────────────── */
+.registro-section {
   display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--negro);
 }
-.footer-brand {
-  padding: 7rem 5rem;
+.registro-left {
+  padding: 6rem 4.5rem;
   border-right: 1px solid var(--negro);
-  display: flex; flex-direction: column; gap: 2.5rem;
+  background: var(--fondo);
 }
-.footer-brand-name {
+.registro-left h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 3rem; font-weight: 500; line-height: 1;
+  font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; line-height: 1.1;
+  margin-bottom: 0.8rem;
 }
-.footer-brand-name span { color: var(--verde-oscuro); }
-.footer-brand p {
-  font-size: 0.92rem; line-height: 1.8; color: var(--gris-medio); max-width: 40ch;
-}
-.footer-brand-links {
-  display: flex; gap: 2rem;
-}
-.footer-brand-links a {
-  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gris-medio); text-decoration: none;
-  border-bottom: 1px solid var(--gris-claro);
-  padding-bottom: 2px; transition: color 0.25s, border-color 0.25s;
-}
-.footer-brand-links a:hover { color: var(--negro); border-color: var(--negro); }
-
-/* FORM */
-.registro { padding: 7rem 5rem; }
-.registro h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem; font-weight: 500; margin-bottom: 0.6rem;
-}
-.registro h3 em { font-style: italic; color: var(--verde-oscuro); }
+.registro-left h2 em { font-style: italic; font-weight: 400; color: var(--verde-texto); }
 .registro-sub {
-  font-size: 0.88rem; line-height: 1.75; color: var(--gris-medio);
-  max-width: 52ch; margin-bottom: 3rem;
+  font-size: 0.9rem; line-height: 1.8; color: var(--gris);
+  max-width: 50ch; margin-bottom: 3rem;
 }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 0; }
-.f-group {
-  display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.8rem;
-}
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.f-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.6rem; }
 .f-group label {
-  font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris-medio);
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris);
 }
-.f-group input,
-.f-group select {
-  background: transparent; border: none;
-  border-bottom: 1px solid var(--gris-claro);
-  padding: 0.65rem 0; font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem; color: var(--negro); outline: none;
-  transition: border-color 0.25s; -webkit-appearance: none;
+.f-group input, .f-group select {
+  background: transparent; border: none; border-bottom: 1px solid var(--gris-claro);
+  padding: 0.6rem 0; font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem; color: var(--negro); outline: none;
+  transition: border-color 0.2s; -webkit-appearance: none;
 }
 .f-group input::placeholder { color: rgba(100,100,100,0.3); }
-.f-group input:focus,
-.f-group select:focus { border-color: var(--negro); }
-.form-footer-row {
-  display: flex; align-items: center; gap: 2.5rem; margin-top: 1rem;
-}
-.form-note {
-  font-size: 0.75rem; color: var(--gris-medio); line-height: 1.6; max-width: 28ch;
-}
+.f-group input:focus, .f-group select:focus { border-color: var(--negro); }
+.form-bottom { display: flex; align-items: center; gap: 2rem; margin-top: 0.5rem; }
+.form-note { font-size: 0.72rem; color: var(--gris); line-height: 1.6; max-width: 26ch; font-style: italic; }
 .success-msg {
-  display: none; margin-top: 1.8rem;
-  padding: 1.4rem 1.8rem;
-  border-left: 1px solid var(--verde);
-  background: rgba(143,188,143,0.07);
+  display: none; margin-top: 1.5rem; padding: 1.2rem 1.6rem;
+  border-left: 2px solid var(--verde);
+  background: var(--menta-palido);
   font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 0.95rem; line-height: 1.7; color: var(--verde-oscuro);
+  font-size: 0.92rem; line-height: 1.7; color: var(--verde-texto);
 }
 .success-msg.show { display: block; }
-
-/* ─── FOOTER BOTTOM ─────────────────── */
+ 
+/* Lado derecho del registro: foto + texto brand */
+.registro-right {
+  background: var(--negro); position: relative; overflow: hidden;
+}
+.registro-right img {
+  width: 100%; height: 55%; object-fit: cover; object-position: center 20%;
+  filter: brightness(0.7) saturate(0.8);
+  border-bottom: 1px solid rgba(250,250,248,0.1);
+}
+.registro-brand {
+  padding: 3rem 4rem;
+}
+.registro-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 900; line-height: 0.95;
+  color: var(--fondo); margin-bottom: 0.2rem;
+}
+.registro-brand-name .couture {
+  font-style: italic; font-weight: 400; color: var(--verde);
+}
+.registro-brand-sub {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(250,250,248,0.35); margin-bottom: 1.8rem;
+}
+.registro-brand p {
+  font-size: 0.85rem; line-height: 1.8; color: rgba(250,250,248,0.5);
+  max-width: 36ch; margin-bottom: 2rem;
+}
+.registro-links { display: flex; gap: 2rem; }
+.registro-links a {
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(250,250,248,0.4); text-decoration: none;
+  border-bottom: 1px solid rgba(250,250,248,0.15); padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.registro-links a:hover { color: var(--verde); border-color: var(--verde); }
+ 
+/* ── FOOTER ────────────────────────────── */
 .footer-bottom {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 2rem 5rem;
+  padding: 1.8rem 4.5rem;
   border-top: 1px solid var(--negro);
+  background: var(--fondo);
 }
-.footer-copy {
-  font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gris-medio);
-}
+.footer-copy { font-size: 0.68rem; letter-spacing: 0.06em; color: var(--gris); }
 .footer-tagline {
   font-family: 'Playfair Display', serif; font-style: italic;
-  font-size: 0.88rem; color: var(--gris-medio);
+  font-size: 0.85rem; color: var(--gris);
 }
-
-/* ─── REVEAL ────────────────────────── */
+ 
+/* ── REVEAL ────────────────────────────── */
 .reveal {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
 .reveal.in { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Guau <span>Couture</span></a>
+  <a href="#" class="nav-logo">GUAU <span class="couture">Couture</span></a>
   <ul class="nav-links">
-    <li><a href="#descripcion">El Desfile</a></li>
+    <li><a href="#desfile">El Desfile</a></li>
     <li><a href="#programa">Programa</a></li>
     <li><a href="#info">Información</a></li>
   </ul>
-  <a href="#registro" class="nav-cta">Reservar Asiento</a>
+  <a href="#registro" class="nav-cta">Reservar Entrada</a>
 </nav>
-
-<!-- ─── HERO ─── -->
+ 
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-left">
-    <p class="u-eyebrow">Sevilla · Viernes Santo · MMXXVI</p>
-    <h1 class="hero-title">
-      Alta Costura<br>
-      para Canes<br>
-      <em>de Alcurnia</em>
-    </h1>
-    <blockquote class="hero-tagline">
-      "La distinción no se compra.<br>Se hereda. O se viste."
-    </blockquote>
+    <p class="hero-season">Guau Couture · Temporada Primavera 2026</p>
+    <h1 class="hero-title">Para santos,</h1>
+    <p class="hero-title-italic">nuestros perros.</p>
+    <div class="hero-tagline">
+      <p>Sevilla, Viernes Santo. El desfile más inesperado de la carrera oficial.</p>
+    </div>
+    <p class="hero-desc">Cuando la alta sociedad canina sevillana desfila por la Plaza San Francisco, el mundo —por un instante— tiene la elegancia que merece.</p>
     <div class="hero-actions">
-      <a href="#registro" class="btn-noir">Reservar Asiento</a>
-      <a href="#programa" class="btn-ghost">Contemplar el Programa</a>
+      <a href="#registro" class="btn-fill">Reservar mi Asiento</a>
+      <a href="#programa" class="btn-line">Ver Programa</a>
     </div>
     <div class="hero-stamp">
-      <span class="hero-stamp-year">I</span>
-      <span class="hero-stamp-text">Edición<br>Fundacional</span>
+      <span>I</span>
+      <span>Edición<br>Fundacional</span>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-img-wrap">
-      <img src="https://images.unsplash.com/photo-1534361960057-19f4434a5d30?w=900&q=80&auto=format&fit=crop"
-           alt="Can de alcurnia, elegantemente ataviado"
-           onerror="this.src='https://placehold.co/900x1080/e8ede8/6a9e6a?text=Guau+Couture'">
-    </div>
-    <div class="hero-caption">
-      <span class="hero-caption-main">Plaza San Francisco, Sevilla</span>
-      <span class="hero-caption-sub">3 Abril 2026 · 09:00 — 11:00 h</span>
+    <!-- Perros vestidos de nazarenos, Semana Santa -->
+    <img
+      src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?w=900&q=85&auto=format&fit=crop&crop=faces,center"
+      alt="Canes de alcurnia, ataviados para el cortejo"
+      onerror="this.src='https://placehold.co/900x1080/1a1a1a/8FBC8F?text=Guau+Couture'">
+    <div class="hero-img-caption">
+      <span>"La distinción no se compra. Se hereda. O se viste."</span>
+      <span>3 · 04 · 2026 — Plazas limitadas</span>
     </div>
   </div>
 </section>
-
-<!-- ─── TICKER ─── -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <span>Guau Couture</span>
-    <span class="accent">— Alta Costura Canina —</span>
-    <span>Sevilla 2026</span>
-    <span class="accent">— Viernes Santo —</span>
-    <span>Plaza San Francisco</span>
-    <span class="accent">— I Edición Fundacional —</span>
-    <span>Cuatro Pases · Cuatro Razas</span>
-    <span class="accent">— La distinción no se compra —</span>
-    <span>Guau Couture</span>
-    <span class="accent">— Alta Costura Canina —</span>
-    <span>Sevilla 2026</span>
-    <span class="accent">— Viernes Santo —</span>
-    <span>Plaza San Francisco</span>
-    <span class="accent">— I Edición Fundacional —</span>
-    <span>Cuatro Pases · Cuatro Razas</span>
-    <span class="accent">— La distinción no se compra —</span>
+ 
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Guau Couture</span><span class="hi">— Maison de Mode Canine —</span>
+    <span>Sevilla 2026</span><span class="hi">— Viernes Santo —</span>
+    <span>Plaza San Francisco</span><span class="hi">— I Edición Fundacional —</span>
+    <span>Cuatro Pases</span><span class="hi">— Cuatro Razas —</span>
+    <span>La distinción no se compra</span><span class="hi">— Se hereda. O se viste. —</span>
+    <span>Guau Couture</span><span class="hi">— Maison de Mode Canine —</span>
+    <span>Sevilla 2026</span><span class="hi">— Viernes Santo —</span>
+    <span>Plaza San Francisco</span><span class="hi">— I Edición Fundacional —</span>
+    <span>Cuatro Pases</span><span class="hi">— Cuatro Razas —</span>
+    <span>La distinción no se compra</span><span class="hi">— Se hereda. O se viste. —</span>
   </div>
 </div>
-
-<!-- ─── DESCRIPCIÓN ─── -->
-<section class="descripcion" id="descripcion">
-  <div class="desc-aside">
-    <span class="desc-aside-label">El Desfile</span>
-    <span class="desc-aside-num">01</span>
-    <img src="https://images.unsplash.com/photo-1600804340584-c7db2eacf0bf?w=600&q=80&auto=format&fit=crop"
-         alt="Detalle de indumentaria canina"
-         onerror="this.src='https://placehold.co/400x533/e8ede8/6a9e6a?text=Detalle'">
+ 
+<!-- ── DESCRIPCIÓN ── -->
+<section class="descripcion" id="desfile">
+  <div class="desc-sidebar">
+    <span class="desc-sidebar-label">El Desfile</span>
+    <span class="desc-sidebar-num">01</span>
+    <!-- Perro elegante ataviado -->
+    <img
+      src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=85&auto=format&fit=crop&crop=faces,top"
+      alt="Can de alcurnia en compostura impecable"
+      onerror="this.src='https://placehold.co/400x533/eef6ee/3d6b3d?text=Detalle'">
   </div>
   <div class="desc-main">
-    <h2>Le invitamos a presenciar<br><em>la liturgia de la moda canina</em></h2>
-    <p>
-      En la mañana del Viernes Santo, cuando Sevilla aún guarda el silencio solemne que precede a la procesión, la Plaza San Francisco se vestirá de una gala inusitada. <strong>Guau Couture</strong> presenta su primera edición de alta costura canina — una cita irrenunciable para quienes comprenden que la elegancia no entiende de especies.
-    </p>
-    <div class="desc-quote">
-      <p>"Porque si el cielo hispalense ha de ser testigo de la belleza este día, bien merece que sus más refinados habitantes desfilen también bajo él."</p>
+    <h2 class="reveal">La cita <em>más esperada</em><br>de la temporada</h2>
+    <p class="reveal"><strong>Guau Couture</strong> presenta su desfile de primavera más ambicioso hasta la fecha. La Maison de Mode Canine convoca en la Plaza San Francisco a la crème de la crème de la aristocracia canina andaluza: Galgos de estampa incontestable, Mastines de impecable porte, Perros de Agua con rizos de alta costura, Bodegueros de carácter y Bretones Españoles de distinción cinegética.</p>
+    <div class="desc-quote reveal">
+      <p>"Hay quien madruga para ver la Macarena. Hay quien madruga para ver a la Srta. Pompadour con su arnés de terciopelo esmeralda."</p>
+      <cite>— Crónica Social, Guau Couture, Temporada 2026</cite>
     </div>
-    <p>
-      Cuatro hermandades caninas de linaje y porte irreprochables presentarán sus atavíos de temporada en un recorrido coreografiado entre las columnas del Ayuntamiento y los arcos del Archivo de Indias. El acceso es libre para el público congregado; <strong>el aforo de las tribunas de honor permanece estrictamente limitado</strong>.
-    </p>
-    <p>
-      Se recomienda una indumentaria acorde a la solemnidad de la jornada. El tweed, el lino sevillano y las mantillas de encaje gozan, naturalmente, de la predilección del comité organizador.
-    </p>
-    <img
-      class="desc-img-bottom"
-      src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=900&q=80&auto=format&fit=crop"
-      alt="Vista de la Plaza San Francisco, Sevilla"
-      onerror="this.src='https://placehold.co/800x450/e8ede8/6a9e6a?text=Plaza+San+Francisco'">
+    <p class="reveal">El escenario no es casual. La Plaza San Francisco, en plena Carrera Oficial, antes de que la bulla lo devore todo. Un Viernes Santo que este año será recordado no solo por la penitencia, sino por la tela, el arnés y la pluma bien colocada.</p>
+    <p class="reveal"><strong>Cuatro pases. Cuatro lecturas de un mismo concepto:</strong> el lujo como devoción. La moda como liturgia. Y los perros, como siempre, mejor vestidos que nadie.</p>
+    <div class="desc-img-row reveal">
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500&q=80&auto=format&fit=crop"
+          alt="Galgos en pasarela"
+          onerror="this.src='https://placehold.co/500x375/eef6ee/3d6b3d?text=Pase+I'">
+        <p class="desc-img-caption">Armados de la Macarena — Galgos Españoles</p>
+      </div>
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1534361960057-19f4434a5d30?w=500&q=80&auto=format&fit=crop"
+          alt="Mastines de alta costura"
+          onerror="this.src='https://placehold.co/500x375/eef6ee/3d6b3d?text=Pase+II'">
+        <p class="desc-img-caption">Gran Power — Mastines del Pirineo</p>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ─── PROGRAMA ─── -->
+ 
+<!-- ── PROGRAMA ── -->
 <section class="programa" id="programa">
-  <div class="programa-header">
-    <h2>Programa<br>del <em>Desfile</em></h2>
-    <div class="programa-header-meta">
-      Viernes Santo<br>3 de Abril, 2026<br>09:00 — 11:00 horas<br>Plaza San Francisco
+  <div class="programa-head">
+    <h2>Programa Oficial<br><em>Cuatro pases. Una sola vez.</em></h2>
+    <div class="programa-head-meta">
+      Programa Oficial<br>
+      Viernes Santo · 3 Abril 2026<br>
+      09:00 — 11:00 h<br>
+      Plaza San Francisco, Sevilla
     </div>
   </div>
   <div class="pases-grid">
-
+ 
+    <!-- PASE I -->
     <div class="pase reveal">
-      <div class="pase-overlay"></div>
-      <div class="pase-num">I</div>
-      <p class="pase-roman">Primer Pase</p>
-      <h3 class="pase-title">Armados de la Macarena</h3>
-      <p class="pase-raza">Galgos Españoles</p>
-      <p class="pase-desc">La aristocracia de la velocidad desfila con una sobriedad que sólo la crianza de siglos puede conferir. Escorzo perfecto, mirada indolente.</p>
-      <img class="pase-img"
-           src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=600&q=80&auto=format&fit=crop"
-           alt="Galgo español"
-           onerror="this.src='https://placehold.co/400x300/1a1a1a/8FBC8F?text=Pase+I'">
+      <div class="pase-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800&q=80&auto=format&fit=crop&crop=top"
+          alt="Galgo Español"
+          onerror="this.src='https://placehold.co/800x450/1a1a1a/8FBC8F?text=Pase+I'">
+        <div class="pase-badge">Apertura</div>
+      </div>
+      <div class="pase-body">
+        <div class="pase-meta">
+          <span class="pase-roman">Pase I</span>
+          <span class="pase-time">9:00 — 9:30 h</span>
+        </div>
+        <h3 class="pase-title">Armados de la Macarena</h3>
+        <p class="pase-raza">Galgos Españoles</p>
+        <p class="pase-desc">La Centuria Romana Macarena en versión canina. Lorica de escamas en cuero lacado negro con herrajes dorados. Galgos Españoles, cuya estampa marcial es la única que honra con justicia el uniforme de la Guardia Pretoriana. El paso que abre el desfile. Y que, dicho sea, lo cierra todo lo demás.</p>
+      </div>
     </div>
-
+ 
+    <!-- PASE II -->
     <div class="pase reveal">
-      <div class="pase-overlay"></div>
-      <div class="pase-num">II</div>
-      <p class="pase-roman">Segundo Pase</p>
-      <h3 class="pase-title">Gran Power</h3>
-      <p class="pase-raza">Mastines del Pirineo</p>
-      <p class="pase-desc">La magnificencia hecha carne. Estos colosos de pelo alba portan sus atavíos con la gravedad de quien sabe que su sola presencia es ya un argumento.</p>
-      <img class="pase-img"
-           src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&q=80&auto=format&fit=crop"
-           alt="Mastín del Pirineo"
-           onerror="this.src='https://placehold.co/400x300/1a1a1a/8FBC8F?text=Pase+II'">
+      <div class="pase-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80&auto=format&fit=crop&crop=top"
+          alt="Mastín del Pirineo"
+          onerror="this.src='https://placehold.co/800x450/1a1a1a/8FBC8F?text=Pase+II'">
+        <div class="pase-badge">Señorío</div>
+      </div>
+      <div class="pase-body">
+        <div class="pase-meta">
+          <span class="pase-roman">Pase II</span>
+          <span class="pase-time">9:30 — 10:00 h</span>
+        </div>
+        <h3 class="pase-title">Gran Power</h3>
+        <p class="pase-raza">Mastines del Pirineo</p>
+        <p class="pase-desc">Inspirado en la Hermandad del Gran Poder: la sobriedad absoluta como máxima expresión del lujo. Túnica de cola y antifaz en ruan negro, sin capa. Esparto trenzado y sandalia hebrea. Penitencia en estado puro. Porque solo quien tiene porte suficiente puede vestir tan poco y significar tanto.</p>
+      </div>
     </div>
-
+ 
+    <!-- PASE III -->
     <div class="pase reveal">
-      <div class="pase-overlay"></div>
-      <div class="pase-num">III</div>
-      <p class="pase-roman">Tercer Pase</p>
-      <h3 class="pase-title">Trianeros</h3>
-      <p class="pase-raza">Perros de Agua Españoles</p>
-      <p class="pase-desc">Del barrio de la otra orilla, con su rizo indomable y su carácter que no admite domesticación fácil. Triana, siempre Triana.</p>
-      <img class="pase-img"
-           src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80&auto=format&fit=crop"
-           alt="Perro de Agua Español"
-           onerror="this.src='https://placehold.co/400x300/1a1a1a/8FBC8F?text=Pase+III'">
+      <div class="pase-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80&auto=format&fit=crop&crop=center"
+          alt="Perro de Agua Español"
+          onerror="this.src='https://placehold.co/800x450/1a1a1a/8FBC8F?text=Pase+III'">
+        <div class="pase-badge">Ribera</div>
+      </div>
+      <div class="pase-body">
+        <div class="pase-meta">
+          <span class="pase-roman">Pase III</span>
+          <span class="pase-time">10:00 — 10:30 h</span>
+        </div>
+        <h3 class="pase-title">Trianeros</h3>
+        <p class="pase-raza">Perros de Agua Españoles</p>
+        <p class="pase-desc">La Esperanza de Triana en su máxima expresión: manto de salida en verde esmeralda bordado en oro, toca de sobremanto y encajes áureos. Modelos: Perros de Agua Andaluces, porque sus rizos tienen la misma textura que el terciopelo de Triana.</p>
+      </div>
     </div>
-
+ 
+    <!-- PASE IV -->
     <div class="pase reveal">
-      <div class="pase-overlay"></div>
-      <div class="pase-num">IV</div>
-      <p class="pase-roman">Cuarto Pase · Clausura</p>
-      <h3 class="pase-title">Los Cachorros</h3>
-      <p class="pase-raza">Bodegueros Andaluces & Épagneuls Bretons</p>
-      <p class="pase-desc">La juventud no es una excusa para el descuido. Estos jóvenes modelos demuestran que el buen gusto se asienta desde las primeras semanas de existencia.</p>
-      <img class="pase-img"
-           src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=600&q=80&auto=format&fit=crop"
-           alt="Cachorros de alcurnia"
-           onerror="this.src='https://placehold.co/400x300/1a1a1a/8FBC8F?text=Pase+IV'">
+      <div class="pase-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=800&q=80&auto=format&fit=crop&crop=top"
+          alt="Cachorros Bodegueros y Bretones"
+          onerror="this.src='https://placehold.co/800x450/1a1a1a/8FBC8F?text=Pase+IV'">
+        <div class="pase-badge">Finale</div>
+      </div>
+      <div class="pase-body">
+        <div class="pase-meta">
+          <span class="pase-roman">Pase IV · Cierre</span>
+          <span class="pase-time">10:30 — 11:00 h</span>
+        </div>
+        <h3 class="pase-title">Los Cachorros</h3>
+        <p class="pase-raza">Bodegueros Andaluces &amp; Épagneuls Bretons</p>
+        <p class="pase-desc">Homenaje a la Hermandad del Cachorro: túnica y antifaz de sarga negra, capa de sarga color crudo. Bodegueros Andaluces y Bretones Españoles, porque el cierre siempre lo firma quien tiene más carácter por metro cuadrado.</p>
+      </div>
     </div>
-
+ 
   </div>
 </section>
-
-<!-- ─── INFO ─── -->
-<section class="info" id="info">
-  <div class="info-left">
-    <div class="u-eyebrow">Información Práctica</div>
-    <h2>Todo cuanto<br>precisa <em>saber</em></h2>
-    <p>
-      El acceso al desfile es libre para los asistentes de pie. Las tribunas de honor y los palcos de vista privilegiada requieren reserva previa mediante el formulario que sigue a estas líneas. Se ruega puntualidad: el cortejo no aguarda a nadie, por distinguido que sea su pedigrí.
-    </p>
-    <img
-      src="https://images.unsplash.com/photo-1477420999409-fefb7c6c3b38?w=900&q=80&auto=format&fit=crop"
-      class="info-img"
-      alt="Vista aérea de Sevilla"
-      onerror="this.src='https://placehold.co/800x450/e8ede8/6a9e6a?text=Sevilla'">
+ 
+<!-- ── CTA INTERMEDIO ── -->
+<div class="cta-band reveal">
+  <div>
+    <h2>La primera fila<br><em>no espera.</em></h2>
+    <p>Guau Couture ha previsto un aforo reducido para garantizar la experiencia que merece un evento de esta naturaleza. Las entradas se agotan con la misma velocidad con que los mantones se despliegan en Triana al primer golpe de campana. No diga que no se lo advertimos.</p>
   </div>
-  <div class="info-right">
-    <div class="info-row">
-      <div class="info-row-label">Fecha</div>
-      <div class="info-row-val">Viernes Santo · 3 de Abril, 2026<small>Semana Santa Sevillana</small></div>
-    </div>
-    <div class="info-row">
-      <div class="info-row-label">Horario</div>
-      <div class="info-row-val">09:00 — 11:00 horas<small>Apertura de tribunas: 08:30 h</small></div>
-    </div>
-    <div class="info-row">
-      <div class="info-row-label">Lugar</div>
-      <div class="info-row-val">Plaza San Francisco<small>Centro Histórico · Sevilla · 41001</small></div>
-    </div>
-    <div class="info-row">
-      <div class="info-row-label">Acceso</div>
-      <div class="info-row-val">Libre · Tribunas con reserva previa<small>Aforo estrictamente limitado en palcos de honor</small></div>
-    </div>
-    <div class="info-row">
-      <div class="info-row-label">Dress Code</div>
-      <div class="info-row-val">Elegancia discreta y sostenida<small>Se desaconseja expresamente el atuendo informal</small></div>
-    </div>
-    <div class="info-row">
-      <div class="info-row-label">Razas</div>
-      <div class="info-row-val">Galgo · Mastín · Perro de Agua · Bodeguero<small>Cuatro pases de colección</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- MAP -->
-<div class="map-band">
-  <img
-    src="https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=1600&q=80&auto=format&fit=crop"
-    alt="Sevilla, Plaza San Francisco"
-    onerror="this.src='https://placehold.co/1600x280/e8ede8/6a9e6a?text=Plaza+San+Francisco+·+Sevilla'">
-  <div class="map-overlay">
-    <div class="map-tag">
-      <div class="map-tag-place">Plaza San Francisco</div>
-      <div class="map-tag-sub">Centro Histórico · Sevilla · 41001</div>
-    </div>
+  <div class="cta-band-right">
+    <a href="#registro" class="btn-fill">Reservar mi Asiento en Primera Fila</a>
+    <p class="cta-band-aside">Acceso exclusivo · Aforo reducido<br>Imprescindible reserva previa</p>
   </div>
 </div>
-
-<!-- ─── FOOTER ─── -->
-<footer id="registro">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-brand-name">Guau<br><span>Couture</span></div>
+ 
+<!-- ── INFO PRÁCTICA ── -->
+<section class="info" id="info">
+  <div class="info-left">
+    <span class="info-label">Información Práctica</span>
+    <h2>Sepa <em>cómo llegar</em><br>a la cita del año</h2>
+    <p>El acceso al desfile es libre para los asistentes de pie. Las tribunas de honor requieren reserva previa. Acceso con reserva desde las 8:45 h. Se ruega puntualidad. Los pases no esperan —ni los perros tampoco.</p>
+    <div class="info-cols reveal">
+      <div class="info-col">
+        <p class="info-col-label">Fecha</p>
+        <p class="info-col-val">3 de abril de 2026</p>
+        <p class="info-col-sub">Viernes Santo. Procure el recorrido con la solemnidad que merece.</p>
+      </div>
+      <div class="info-col">
+        <p class="info-col-label">Horario</p>
+        <p class="info-col-val">9:00 — 11:00 h</p>
+        <p class="info-col-sub">Acceso con reserva desde las 8:45 h.</p>
+      </div>
+      <div class="info-col">
+        <p class="info-col-label">Escenario</p>
+        <p class="info-col-val">Plaza San Francisco, Sevilla</p>
+        <p class="info-col-sub">En Carrera Oficial. El mismo pavimento que pisan los pasos más insignes.</p>
+      </div>
+      <div class="info-col">
+        <p class="info-col-label">Contexto</p>
+        <p class="info-col-val">Antes de la bulla</p>
+        <p class="info-col-sub">El desfile concluye a las 11:00 h, con tiempo de fingir que estaba aquí por los pasos.</p>
+      </div>
+    </div>
+  </div>
+  <div class="info-right">
+    <div class="info-right-img">
+      <img
+        src="https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=900&q=80&auto=format&fit=crop"
+        alt="Plaza San Francisco, Sevilla"
+        onerror="this.src='https://placehold.co/900x600/1a1a1a/8FBC8F?text=Sevilla'">
+      <div class="info-right-overlay">
+        <h3>"El escenario no es casual."</h3>
+        <p>Plaza San Francisco · Sevilla · 41001</p>
+      </div>
+    </div>
+    <div class="info-right-bottom">
+      <p>Todos los pases transcurren en la Plaza San Francisco, Sevilla. Acceso exclusivo para asistentes con reserva confirmada en tribunas. Acceso libre en pie sujeto a aforo de vía pública.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ── REGISTRO ── -->
+<section class="registro-section" id="registro">
+  <div class="registro-left">
+    <h2>Reserve su <em>Asiento</em></h2>
+    <p class="registro-sub">Los palcos de honor son escasos. La demanda, previsiblemente superior a la oferta. Le recomendamos proceder con la celeridad que el asunto merece.</p>
+    <div class="f-row">
+      <div class="f-group">
+        <label>Nombre</label>
+        <input type="text" id="fn" placeholder="Su nombre de pila">
+      </div>
+      <div class="f-group">
+        <label>Apellidos</label>
+        <input type="text" id="ln" placeholder="Y los patronímicos">
+      </div>
+    </div>
+    <div class="f-group">
+      <label>Correo Electrónico</label>
+      <input type="email" id="em" placeholder="su.correspondencia@dominio.com">
+    </div>
+    <div class="f-row">
+      <div class="f-group">
+        <label>Nombre del Can</label>
+        <input type="text" id="cn" placeholder="El protagonista de la jornada">
+      </div>
+      <div class="f-group">
+        <label>Raza</label>
+        <select id="rz">
+          <option value="">— Seleccione —</option>
+          <option>Galgo Español</option>
+          <option>Mastín del Pirineo</option>
+          <option>Perro de Agua Español</option>
+          <option>Bodeguero Andaluz</option>
+          <option>Épagneul Breton</option>
+          <option>Otra raza de alcurnia</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <button class="btn-fill" onclick="enviar()">Solicitar Reserva</button>
+      <p class="form-note">Confirmación en un plazo no superior a 48 horas hábiles.</p>
+    </div>
+    <div class="success-msg" id="ok">
+      Su solicitud ha sido recibida con la deferencia que merece. Esperamos contar con su presencia —y la de su refinado acompañante— en la Plaza San Francisco.
+    </div>
+  </div>
+ 
+  <div class="registro-right">
+    <img
+      src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=900&q=80&auto=format&fit=crop&crop=top"
+      alt="Canes de alcurnia en el cortejo"
+      onerror="this.src='https://placehold.co/900x500/1a1a1a/8FBC8F?text=Alta+Costura+Canina'">
+    <div class="registro-brand">
+      <div class="registro-brand-name">GUAU<br><span class="couture">Couture</span></div>
+      <p class="registro-brand-sub">Maison de Mode Canine — Madrid · Sevilla</p>
       <p>La primera firma de alta costura dedicada a los canes de distinción. Porque la elegancia, como el carácter genuino, no entiende de razas menores ni de modas pasajeras.</p>
-      <div class="footer-brand-links">
+      <div class="registro-links">
         <a href="#">Instagram</a>
         <a href="#">Notas de Prensa</a>
         <a href="#">Correspondencia</a>
       </div>
     </div>
-
-    <div class="registro">
-      <h3>Reserve su <em>Asiento</em></h3>
-      <p class="registro-sub">
-        Los palcos de honor son escasos. La demanda, previsiblemente superior a la oferta disponible. Le recomendamos proceder con la celeridad que el asunto merece.
-      </p>
-      <div class="form-row">
-        <div class="f-group">
-          <label>Nombre</label>
-          <input type="text" id="fn" placeholder="Su nombre de pila">
-        </div>
-        <div class="f-group">
-          <label>Apellidos</label>
-          <input type="text" id="ln" placeholder="Y los patronímicos">
-        </div>
-      </div>
-      <div class="f-group">
-        <label>Correo Electrónico</label>
-        <input type="email" id="em" placeholder="su.correspondencia@dominio.com">
-      </div>
-      <div class="form-row">
-        <div class="f-group">
-          <label>Nombre del Can</label>
-          <input type="text" id="cn" placeholder="El protagonista de la jornada">
-        </div>
-        <div class="f-group">
-          <label>Raza</label>
-          <select id="rz">
-            <option value="">— Seleccione —</option>
-            <option>Galgo Español</option>
-            <option>Mastín del Pirineo</option>
-            <option>Perro de Agua Español</option>
-            <option>Bodeguero Andaluz</option>
-            <option>Épagneul Breton</option>
-            <option>Otra raza de alcurnia</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-footer-row">
-        <button class="btn-noir" onclick="enviar()">Solicitar Reserva</button>
-        <p class="form-note">Recibirá confirmación en un plazo no superior a 48 horas hábiles.</p>
-      </div>
-      <div class="success-msg" id="ok">
-        Su solicitud ha sido recibida con la deferencia que merece. Esperamos contar con su presencia — y la de su refinado acompañante — en la Plaza San Francisco.
-      </div>
-    </div>
   </div>
-
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Guau Couture · Todos los derechos reservados · Sevilla</span>
-    <span class="footer-tagline">"La distinción no se compra. Se hereda. O se viste."</span>
-  </div>
-</footer>
-
+</section>
+ 
+<div class="footer-bottom">
+  <span class="footer-copy">© 2026 Guau Couture · Todos los derechos reservados · Sevilla</span>
+  <span class="footer-tagline">"La distinción no se compra. Se hereda. O se viste."</span>
+</div>
+ 
 <script>
-  // Reveal on scroll
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.07 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Form
+ 
   function enviar() {
     const fn = document.getElementById('fn').value.trim();
     const em = document.getElementById('em').value.trim();
     if (!fn || !em) {
-      alert('Se precisan, al menos, un nombre y una dirección de correspondencia para gestionar la reserva.');
+      alert('Se precisan, al menos, un nombre y una dirección de correspondencia.');
       return;
     }
     document.getElementById('ok').classList.add('show');
-    document.querySelector('.form-footer-row').style.cssText = 'opacity:.35;pointer-events:none';
+    document.querySelector('.form-bottom').style.cssText = 'opacity:.3;pointer-events:none';
   }
 </script>
 </body>
 </html>
+ 
